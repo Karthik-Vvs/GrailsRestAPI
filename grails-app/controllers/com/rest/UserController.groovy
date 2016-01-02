@@ -108,8 +108,7 @@ class UserController {
 		User toUser=User.get(json['user_id'])
 		
 		def cubeSet=user.cubes.findAll{it.id as long==cubeId as long}
-		Cube cube=cubeSet?.toArray()[0]
-		println(cube.id)
+		Cube cube=cubeSet.toArray()[0]
 		toUser.addToCubes(cube)
 		cube.contents.each {
 			toUser.addToContents(it)
@@ -129,7 +128,7 @@ class UserController {
 		User toUser=User.get(json['user_id'])
 		
 		def contentSet=user.contents.findAll{it.id as long==contentId as long}
-		Content content=contentSet?.toArray()[0]
+		Content content=contentSet.toArray()[0]
 		println(content.id)
 		toUser.addToContents(content)
 		toUser.save(flush:true)
