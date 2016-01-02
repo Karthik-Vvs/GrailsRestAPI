@@ -1,7 +1,6 @@
 package com.rest
 
 class User {
-	
 	int id
 	String name
 	String city
@@ -13,5 +12,5 @@ class User {
 	static constraints = {
 		name nullable:false
 		city nullable:false
-    }
+    	}
 }
