@@ -4,7 +4,7 @@ import grails.converters.JSON
 
 class UserController {
 
-    def index() { 
+    	def index() { 
 		def json=request.JSON
 		User user=new User(name:json['name'],city:json['city']);
 		user.save(flush:true)
