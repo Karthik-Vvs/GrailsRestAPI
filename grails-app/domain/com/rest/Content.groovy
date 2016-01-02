@@ -10,7 +10,7 @@ class Content {
 	
 	static belongsTo=User
 
-    static constraints = {
+    	static constraints = {
 		link nullable:false
-    }
+    	}
 }
