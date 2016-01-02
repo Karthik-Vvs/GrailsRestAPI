@@ -12,7 +12,5 @@ class Cube {
 	
 	static constraints = {
 		name nullable:false
-    }
-	
-	
+    	}
 }
