@@ -63,9 +63,9 @@ grails.naming.entries = [
 	"jdbc/${appName}": [
 		type: "javax.sql.DataSource",
 		auth: "Container",
-		url:"jdbc:mysql://localhost:3306/restDB",//"jdbc:mysql://localhost:3306/atns", "jdbc:mysql://dbcrpmysqldev02:3322/atns",
-		username:"root",//"root","atns",
-		password:"root",//"root","b1=f2z5t",
+		url:"jdbc:mysql://localhost:3306/restDB",
+		username:"root",
+		password:"root",
 		driverClassName: "com.mysql.jdbc.Driver",
 		dialect: "org.hibernate.dialect.MySQL5InnoDBDialect",
 		maxActive: "8",
