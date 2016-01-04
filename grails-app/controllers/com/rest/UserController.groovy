@@ -78,8 +78,8 @@ class UserController {
 			it.contents.remove(content)
 		}
 		
-		def result="Deleted content:"+contentId+" from cube:"+cubeId+" for users:"+cube.users*.id
-		render result
+		def result=[:]
+		render result as JSON
 	}
 	
 	def deleteCube(){
@@ -96,8 +96,8 @@ class UserController {
 			it.cubes.remove(cube)
 		}
 		
-		def result="Deleted cube:"+cubeId+" for users:"+cube.users*.id
-		render result
+		def result=[:]
+		render result as JSON
 	}
 	
 	def shareCube() {
