@@ -9,7 +9,7 @@ class UserController {
 		User user=new User(name:json['name'],city:json['city']);
 		user.save(flush:true)
 		
-		def map=[id:user.id,'name':user.name,'city':user.city]
+		def map=['id':user.id,'name':user.name,'city':user.city]
 		render map as JSON
 	}
 	
@@ -23,7 +23,7 @@ class UserController {
 		user.addToCubes(cube)
 		user.save(flush:true)
 		
-		def result=[id:cube.id,'name':cube.name,'user_id':userId]
+		def result=['id':cube.id,'name':cube.name,'user_id':userId]
 		render result as JSON
 	}
 	
@@ -37,7 +37,7 @@ class UserController {
 		user.addToContents(content)
 		user.save(flush:true)
 		
-		def result=[id:content.id,'link':content.link,'user_id':userId]
+		def result=['id':content.id,'link':content.link,'user_id':userId]
 		render result as JSON
 	}
 	
