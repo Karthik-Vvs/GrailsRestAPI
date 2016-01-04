@@ -4,7 +4,7 @@ import grails.converters.JSON
 
 class UserController {
 
-    	def index() { 
+	def index() { 
 		def json=request.JSON
 		User user=new User(name:json['name'],city:json['city']);
 		user.save(flush:true)
@@ -74,9 +74,6 @@ class UserController {
 		Content content=contentSet.toArray()[0]
 		
 		cube.contents.remove(content)
-		cube.users.each{
-			it.contents.remove(content)
-		}
 		
 		def result=[:]
 		render result as JSON
@@ -108,11 +105,9 @@ class UserController {
 		User toUser=User.get(json['user_id'])
 		
 		def cubeSet=user.cubes.findAll{it.id as long==cubeId as long}
-		Cube cube=cubeSet.toArray()[0]
+		Cube cube=cubeSet?.toArray()[0]
+		
 		toUser.addToCubes(cube)
-		cube.contents.each {
-			toUser.addToContents(it)
-		}
 		toUser.save(flush:true)
 		
 		def result=['id':cube.id,'cube_id':cube.id,'user_id':toUser.id]
@@ -128,8 +123,7 @@ class UserController {
 		User toUser=User.get(json['user_id'])
 		
 		def contentSet=user.contents.findAll{it.id as long==contentId as long}
-		Content content=contentSet.toArray()[0]
-		println(content.id)
+		Content content=contentSet?.toArray()[0]
 		toUser.addToContents(content)
 		toUser.save(flush:true)
 		
@@ -154,7 +148,14 @@ class UserController {
 		def result=[]
 		user.contents.each {
 			def contentMap=['id':it.id,'link':it.link,'user_id':userId]
-			result+=[contentMap]
+			if(!result.contains(contentMap))result+=[contentMap]
+		}
+		user.cubes.each{cube->
+			cube.contents.each{content->
+				def contentMap=['id':content.id,'link':content.link,'user_id':userId]
+				if(!result.contains(contentMap))result+=[contentMap]
+			}
+			
 		}
 		render result as JSON
 	}
